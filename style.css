@@ -10,6 +10,10 @@
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 
+body {
+    background-color: black;
+}
+
 .box {
     border: 6px solid #2c3e50;
     border-radius: 2px;
@@ -24,6 +28,7 @@
 .titulo {
     font-size: larger;
     border-style: groove;
-    color: black;
+    color: white;
+    border-color: yellowgreen;
     text-align: center;
 }
