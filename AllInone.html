@@ -113,19 +113,19 @@
         }
 
 
-        function verifyIfSomeoneWon(v) {
-            if (game[0] == v && game[1] == v && game[2] == v ||
-                game[0] == v && game[3] == v && game[6] == v ||
-                game[0] == v && game[4] == v && game[8] == v ||
+        function verifyIfSomeoneWon(letterToVerify) {
+            if (game[0] == letterToVerify && game[1] == letterToVerify && game[2] == letterToVerify ||
+                game[0] == letterToVerify && game[3] == letterToVerify && game[6] == letterToVerify ||
+                game[0] == letterToVerify && game[4] == letterToVerify && game[8] == letterToVerify ||
 
-                game[1] == v && game[4] == v && game[7] ||
-                game[3] == v && game[4] == v && game[5] ||
-                game[6] == v && game[7] == v && game[8] ||
+                game[1] == letterToVerify && game[4] == letterToVerify && game[7] ||
+                game[3] == letterToVerify && game[4] == letterToVerify && game[5] ||
+                game[6] == letterToVerify && game[7] == letterToVerify && game[8] ||
 
-                game[2] == v && game[4] == v && game[6] ||
-                game[2] == v && game[5] == v && game[8]
+                game[2] == letterToVerify && game[4] == letterToVerify && game[6] ||
+                game[2] == letterToVerify && game[5] == letterToVerify && game[8]
             ) {
-                const confirm = window.confirm(`"${v}" ganhou`)
+                const confirm = window.confirm(`"${letterToVerify}" ganhou`)
                 if (confirm == true || confirm == false) {
                     reset();
                 }
