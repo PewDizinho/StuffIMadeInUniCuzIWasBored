@@ -1,69 +1,64 @@
-function selecionar(column, id) {
-    let element = document.getElementById(`${column}-${id}`);
-    const elementTextAsNumber = Number(element.innerText);
-    if (elementTextAsNumber < 9) {
-        element.innerText = elementTextAsNumber + 1;
-        verifyColumn();
+let thisTime = "X";
+let game = [
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0
+]
+
+function test(id) {
+    console.log(thisTime);
+
+    if (document.getElementById(id).innerHTML == " ") {
+        document.getElementById(id).innerHTML = thisTime;
+        game[id] = thisTime;
+        verifyIfSomeoneWon(thisTime)
+
+        if (thisTime == "X") {
+            thisTime = "O";
+        } else {
+            thisTime = "X";
+        }
+        document.getElementById('vez').innerHTML = `Agora é vez do ${thisTime}`;
+
     } else {
-        element.innerText = 1;
-
+        alert("Alguém já usou esse bloco");
     }
-}
-function hasDuplicates(array) {
-    for (var j = 0; j <= 8; j++) {
-        for (var i = 0; i < array.length; i++) {
-            for (var k = 0; k < array[i].length; k++) {
-                var newArray = array[i][k];
-                const noDups = new Set(newArray);
-                if (noDups.size != newArray.length) {
-                    return false
-                }
 
-            }
-
-        }
-    }
-    return true;
 }
 
 
-function verifyColumn() {
-    let horizontalArray = [];
+function reset() {
+    for (var i = 0; i < 9; i++) {
+        document.getElementById(i).innerHTML = " ";
+    }
+    thisTime = "X";
+    game = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ];
+    console.log("Resetou!")
+    console.log(thisTime);
+    console.log(game)
+}
 
-    let _localHorizontalArray = [];
-    for (var _columns = 0; _columns <= 8; _columns++) {
-        for (var _id = 0; _id <= 8; _id++) {
-            _localHorizontalArray.push(document.getElementById(`${_columns}-${_id}`).innerText);
 
-            if (_id == 8) {
-                horizontalArray.push([_localHorizontalArray]);
-                _localHorizontalArray = [];
-            }
+function verifyIfSomeoneWon(v) {
+
+    if (game[0] == v && game[1] == v && game[2] == v ||
+        game[0] == v && game[3] == v && game[6] == v ||
+        game[0] == v && game[4] == v && game[8] == v ||
+
+        game[1] == v && game[4] == v && game[7] ||
+        game[3] == v && game[4] == v && game[5] ||
+        game[6] == v && game[7] == v && game[8] ||
+
+        game[2] == v && game[4] == v && game[6] ||
+        game[2] == v && game[5] == v && game[8]
+    ) {
+        const confirm = window.confirm(`"${v}" ganhou`)
+        if (confirm == true || confirm == false) {
+            reset();
         }
     }
-    let verticalArray = [];
-    let _localVerticalArray = [];
-
-    for (var _id1 = 0; _id1 <= 8; _id1++) {
-        for (var _columns1 = 0; _columns1 <= 8; _columns1++) {
-            _localVerticalArray.push(document.getElementById(`${_columns1}-${_id1}`).innerText);
-
-            if (_columns1 == 8) {
-                verticalArray.push([_localVerticalArray]);
-                _localVerticalArray = [];
-            }
-        }
-    }
-
-
-
-
-
-    if (hasDuplicates(verticalArray) && hasDuplicates(horizontalArray)) {
-        alert("Você ganhou!");
-    }
-
-
-
-
 }
