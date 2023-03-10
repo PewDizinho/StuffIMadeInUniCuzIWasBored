@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- By PewDizinho -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+        }
+        
+        .game-board {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #34495e;
+            color: #fff;
+            border: 6px solid #2c3e50;
+            border-radius: 10px;
+            display: grid;
+            grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        }
+        
+        .box {
+            border: 6px solid #2c3e50;
+            border-radius: 2px;
+            font-family: Helvetica;
+            font-weight: bold;
+            font-size: 4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .titulo {
+            font-size: larger;
+            border-style: groove;
+            color: white;
+            border-color: yellowgreen;
+            text-align: center;
+        }
+    </style>
+    <title>Tic Tac Toe by PewDizinho</title>
+</head>
+
+<body>
+    <p class="titulo" id="vez">
+        Agora é vez do X
+    </p>
+    <div class="game-board">
+        <div class="box" onclick="test(0)" id=0> </div>
+        <div class="box" onclick="test(1)" id=1> </div>
+        <div class="box" onclick="test(2)" id=2> </div>
+        <div class="box" onclick="test(3)" id=3> </div>
+        <div class="box" onclick="test(4)" id=4> </div>
+        <div class="box" onclick="test(5)" id=5> </div>
+        <div class="box" onclick="test(6)" id=6> </div>
+        <div class="box" onclick="test(7)" id=7> </div>
+        <div class="box" onclick="test(8)" id=8> </div>
+    </div>
+    <button onclick="reset()">Resetar</button>
+    <script>
+        /**
+         * @author PewDizinho
+         * 08/03/2023
+         */
+
+
+        var thisTime = "X";
+        var game = [
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0
+        ]
+
+        function test(id) {
+            console.log(thisTime);
+
+            if (document.getElementById(id).innerHTML == " ") {
+                document.getElementById(id).innerHTML = thisTime;
+                game[id] = thisTime;
+                verifyIfSomeoneWon(thisTime)
+
+                if (thisTime == "X") {
+                    thisTime = "O";
+                } else {
+                    thisTime = "X";
+                }
+                document.getElementById('vez').innerHTML = `Agora é vez do ${thisTime}`;
+
+            } else {
+                alert("Alguém já usou esse bloco");
+            }
+
+        }
+
+
+        function reset() {
+            for (var i = 0; i < 9; i++) {
+                document.getElementById(i).innerHTML = " ";
+            }
+            thisTime = "X";
+            game = [
+                0, 0, 0,
+                0, 0, 0,
+                0, 0, 0
+            ];
+            document.getElementById('vez').innerHTML = `Agora é vez do ${thisTime}`;
+            console.log("Resetou!")
+
+        }
+
+
+        function verifyIfSomeoneWon(letterToVerify) {
+            if (game[0] == letterToVerify && game[1] == letterToVerify && game[2] == letterToVerify ||
+                game[0] == letterToVerify && game[3] == letterToVerify && game[6] == letterToVerify ||
+                game[0] == letterToVerify && game[4] == letterToVerify && game[8] == letterToVerify ||
+
+                game[1] == letterToVerify && game[4] == letterToVerify && game[7] ||
+                game[3] == letterToVerify && game[4] == letterToVerify && game[5] ||
+                game[6] == letterToVerify && game[7] == letterToVerify && game[8] ||
+
+                game[2] == letterToVerify && game[4] == letterToVerify && game[6] ||
+                game[2] == letterToVerify && game[5] == letterToVerify && game[8]
+            ) {
+                const confirm = window.confirm(`"${letterToVerify}" ganhou`)
+                if (confirm == true || confirm == false) {
+                    reset();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
