@@ -4,6 +4,9 @@
     border-color: red;
     border-style: solid;
 }
+.unClickable {
+font-weight: bold;
+}
 body {
   background-color: gray;
 }
