@@ -1,1 +1,1 @@
-![alt text](https://github.com/PewDizinho/StuffIMadeInUniCuzIWasBored/blob/Sudoku/sample.jpg?raw=true)
+![alt text](https://github.com/PewDizinho/StuffIMadeInUniCuzIWasBored/Sudoku/sample.png?raw=true)
