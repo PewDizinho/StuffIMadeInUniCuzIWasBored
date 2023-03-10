@@ -1,4 +1,6 @@
+
 function selecionar(column, id) {
+
     let element = document.getElementById(`${column}-${id}`);
     const elementTextAsNumber = Number(element.innerText);
     if (elementTextAsNumber < 9) {
