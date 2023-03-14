@@ -5,14 +5,11 @@ let game = [
     0, 0, 0
 ]
 
-function test(id) {
-    console.log(thisTime);
-
-    if (document.getElementById(id).innerHTML == " ") {
-        document.getElementById(id).innerHTML = thisTime;
-        game[id] = thisTime;
+document.addEventListener("click", function (event) {
+    if (event.target.innerHTML == " ") {
+        event.target.innerHTML = thisTime;
+        game[event.target.id] = thisTime;
         verifyIfSomeoneWon(thisTime)
-
         if (thisTime == "X") {
             thisTime = "O";
         } else {
@@ -24,7 +21,8 @@ function test(id) {
         alert("Alguém já usou esse bloco");
     }
 
-}
+
+});
 
 
 function reset() {
@@ -62,3 +60,4 @@ function verifyIfSomeoneWon(v) {
         }
     }
 }
+
